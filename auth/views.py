@@ -4,6 +4,7 @@ from rest_framework.permissions import AllowAny
 from home.auth.serializer import *
 
 
+# The Class class uses the serializer to handle user registration
 class UserRegistrationView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
