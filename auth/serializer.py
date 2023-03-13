@@ -6,6 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     tags = serializers.ListField(child=serializers.CharField())
 
+# Tags field for the user to select their preferred news topics
     class Meta:
         model = User
         fields = ('email', 'password', 'tags')
