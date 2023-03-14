@@ -115,6 +115,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+NEWS_API_KEY = '752ec2bf30534b8eb620f9f7f2a91f5b'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
