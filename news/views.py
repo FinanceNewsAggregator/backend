@@ -13,7 +13,8 @@ User = get_user_model()
 class UserFinancialNewsView(APIView):
     def get(self, request):
         user = request.user
-        sources = user.tags.split(',')
+        preference = user.preference
+        sources = preference.news_sources
         news_api_url = f'https://newsapi.org/v2/top-headlines?sources={",".join(sources)}&category=business&apiKey={settings.NEWS_API_KEY}'
         response = requests.get(news_api_url)
         data = response.json()
