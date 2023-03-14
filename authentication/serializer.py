@@ -1,18 +1,21 @@
-# serializers.py
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import User, Tag
 
+# Serializer that defines the fields for the user registration form
 class UserSerializer(serializers.ModelSerializer):
-    tags = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all(), many=True)
+    password = serializers.CharField(write_only=True)
+    tags = serializers.ListField(child=serializers.CharField())
 
+# Tags field for the user to select their preferred news topics
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'tags']
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ('email', 'password', 'tags')
 
     def create(self, validated_data):
-        tags_data = validated_data.pop('tags')
-        user = User.objects.create(**validated_data)
-        for tag_data in tags_data:
-            user.tags.add(tag_data)
+        user = User.objects.create(
+            username=validated_data['email'],
+            email=validated_data['email']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
         return user
