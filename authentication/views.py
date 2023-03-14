@@ -29,3 +29,10 @@ class LoginView(APIView):
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key}, status=status.HTTP_200_OK)
+    
+
+class LogoutView(APIView):
+    def post(self, request, format=None):
+        request.user.auth_token.delete()
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
