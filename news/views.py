@@ -15,6 +15,7 @@ class UserFinancialNewsView(APIView):
     def get(self, request):
         api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
         co = cohere.Client(api_key)
+        counter = 0
         user = request.user
         sources = user.preference.tags
         #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
@@ -22,7 +23,11 @@ class UserFinancialNewsView(APIView):
         response = requests.get(news_api_url)
         data = response.json()
         for result in data["results"]:
-            content = result["content"]
-            summary = co.summarize(content, model='summarize-xlarge', num_sentences=2)
-            data['summary'] = summary
+            if counter < 5:
+                content = result["content"]
+                summary = co.summarize(content, model='summarize-xlarge', length='short')
+                data['summary'] = summary
+                counter += 1
+            else:
+                break
         return Response(data)
