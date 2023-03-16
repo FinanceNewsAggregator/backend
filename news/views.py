@@ -19,4 +19,5 @@ class UserFinancialNewsView(APIView):
         news_api_url = f'https://newsdata.io/api/1/news?apiKey={settings.NEWS_API_KEY}&category={",".join(sources)}&language=en'
         response = requests.get(news_api_url)
         data = response.json()
+        content = data['content']
         return Response(data)
