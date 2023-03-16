@@ -22,12 +22,12 @@ class UserFinancialNewsView(APIView):
         news_api_url = f'https://newsdata.io/api/1/news?apiKey={settings.NEWS_API_KEY}&category={",".join(sources)}&language=en'
         response = requests.get(news_api_url)
         data = response.json()
-        for result in data["results"]:
-            if counter < 5:
-                content = result["content"]
-                summary = co.summarize(content, model='summarize-xlarge', length='short')
-                data['summary'] = summary
-                counter += 1
-            else:
-                break
+        # for result in data["results"]:
+        #     if counter < 5:
+        #         content = result["content"]
+        #         summary = co.summarize(content, model='summarize-xlarge', length='short')
+        #         data['summary'] = summary
+        #         counter += 1
+        #     else:
+        #         break
         return Response(data)
