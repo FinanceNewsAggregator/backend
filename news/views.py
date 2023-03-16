@@ -13,13 +13,16 @@ User = get_user_model()
 # News API client library to fetch news based on the user's selected sources
 class UserFinancialNewsView(APIView):
     def get(self, request):
+        api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
+        co = cohere.Client(api_key)
         user = request.user
         sources = user.preference.tags
         #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
         news_api_url = f'https://newsdata.io/api/1/news?apiKey={settings.NEWS_API_KEY}&category={",".join(sources)}&language=en'
         response = requests.get(news_api_url)
         data = response.json()
-        content = data['content']
-        summary = cohere.summarize(content, num_sentences=2)
-        data['summary'] = summary
+        for result in data["results"]:
+            content = result["content"]
+            summary = co.summarize(content, model='summarize-xlarge', num_sentences=2)
+            data['summary'] = summary
         return Response(data)
