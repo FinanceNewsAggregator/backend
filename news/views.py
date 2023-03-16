@@ -20,4 +20,5 @@ class UserFinancialNewsView(APIView):
         response = requests.get(news_api_url)
         data = response.json()
         content = data['content']
+        summary = cohere.summarize(content, num_sentences=2)
         return Response(data)
