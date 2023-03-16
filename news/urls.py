@@ -3,5 +3,5 @@ from .views import UserFinancialNewsView
 
 
 urlpatterns = [
-    path('user-financial-news/', UserFinancialNewsView.as_view())
+    path('user-news/', UserFinancialNewsView.as_view())
 ]
