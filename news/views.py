@@ -14,7 +14,8 @@ class UserFinancialNewsView(APIView):
     def get(self, request):
         user = request.user
         sources = user.preference.tags
-        news_api_url = f'https://newsapi.org/v2/top-headlines?sources={",".join(sources)}&apiKey={settings.NEWS_API_KEY}'
+        #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
+        news_api_url = f'https://newsdata.io/api/1/news?apiKey={settings.NEWS_API_KEY}&category={",".join(sources)}'
         response = requests.get(news_api_url)
         data = response.json()
         return Response(data)
