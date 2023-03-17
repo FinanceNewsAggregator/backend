@@ -1,6 +1,8 @@
 import requests
 # import cohere
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.response import Response
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -12,6 +14,8 @@ User = get_user_model()
 
 # News API client library to fetch news based on the user's selected sources
 class UserFinancialNewsView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
     def get(self, request):
         # api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
         # co = cohere.Client(api_key)
