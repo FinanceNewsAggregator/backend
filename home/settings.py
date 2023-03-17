@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c_a66mjj^ozh0cq198#)j6#aya*1r&+h-$b4i4jw&%kdb$h(qj'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -118,7 +119,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-NEWS_API_KEY = 'pub_1901996e3bc04b8ec3017bf9b2ccecf33c05e'
+NEWS_API_KEY = config('NEWS_API_KEY')
 
 CORS_ORIGIN_ALLOW_ALL = True
 

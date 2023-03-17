@@ -17,7 +17,7 @@ class UserFinancialNewsView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     def get(self, request):
-        # api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
+        # api_key = ''
         # co = cohere.Client(api_key)
         # counter = 0
         user = request.user
