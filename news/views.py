@@ -1,5 +1,5 @@
 import requests
-import cohere
+# import cohere
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.conf import settings
@@ -13,9 +13,9 @@ User = get_user_model()
 # News API client library to fetch news based on the user's selected sources
 class UserFinancialNewsView(APIView):
     def get(self, request):
-        api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
-        co = cohere.Client(api_key)
-        counter = 0
+        # api_key = 'HGwRXlQbFcMruJhsVY7yCOoX752Km8G0tqG4RcfY'
+        # co = cohere.Client(api_key)
+        # counter = 0
         user = request.user
         sources = user.preference.tags
         #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
