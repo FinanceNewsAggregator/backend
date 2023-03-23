@@ -10,7 +10,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-# Remember to add login_required decorator here
 
 # News API client library to fetch news based on the user's selected sources
 class UserFinancialNewsView(APIView):
