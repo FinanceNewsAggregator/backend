@@ -18,7 +18,6 @@ class UserFinancialNewsView(APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     def get(self, request):
         # api_key = ''
-        # co = cohere.Client(api_key)
         user = request.user
         sources = user.preference.tags
         #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
