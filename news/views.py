@@ -30,8 +30,6 @@ class UserFinancialNewsView(APIView):
         # for result in data["results"]:
         #     if counter < 5:
         #         content = result["content"]
-        #         summary = co.summarize(content, model='summarize-xlarge', length='short')
-        #         data['summary'] = summary
         #         counter += 1
         #     else:
         #         break
