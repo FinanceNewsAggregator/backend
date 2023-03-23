@@ -19,7 +19,6 @@ class UserFinancialNewsView(APIView):
     def get(self, request):
         # api_key = ''
         # co = cohere.Client(api_key)
-        # counter = 0
         user = request.user
         sources = user.preference.tags
         #  https://newsdata.io/api/1/news?apikey=YOUR_API_KEY
