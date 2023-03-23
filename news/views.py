@@ -1,5 +1,4 @@
 import requests
-# import cohere
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
