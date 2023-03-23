@@ -28,7 +28,4 @@ class UserFinancialNewsView(APIView):
         data = response.json()
         # Test for co:here
         # for result in data["results"]:
-        #     if counter < 5:
-        #     else:
-        #         break
         return Response(data)
