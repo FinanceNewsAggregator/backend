@@ -29,8 +29,6 @@ class UserFinancialNewsView(APIView):
         # Test for co:here
         # for result in data["results"]:
         #     if counter < 5:
-        #         content = result["content"]
-        #         counter += 1
         #     else:
         #         break
         return Response(data)
